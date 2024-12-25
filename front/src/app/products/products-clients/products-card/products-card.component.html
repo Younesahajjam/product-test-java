@@ -1,0 +1,15 @@
+<div
+class="card border-2"
+style="width: 20rem;"
+>
+<img height="200" [src]="product.image" class="card-img-top" alt="...">
+<div class="card-body overflow-scroll">
+  <h5 class="card-title fs-6 text-nowrap fw-bold mb-1"><i class="fa-solid fa-book"></i>&nbsp;{{product.name}}</h5>
+  <h5 class="card-subtitle fs-6 text-secondary fw-bold mb-1"><i class="fa-solid fa-user-check"></i>&nbsp;{{product.price}}</h5>
+  <h6 class="card-subtitle fs-6 text-secondary mb-1 "><i class="fas fa-code"></i>&nbsp;{{product.description}}</h6>
+  <h6 class="card-subtitle fs-6 text-secondary"><i class="fas fa-user"></i>&nbsp;{{product.quantity}}</h6>
+<hr>
+
+<button (click)="onAddToPanier()" type="button" class="btn btn-primary">Acheter</button>
+</div>
+</div>

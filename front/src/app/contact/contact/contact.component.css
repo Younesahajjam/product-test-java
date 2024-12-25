@@ -1,0 +1,22 @@
+/* contact.component.css */
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+  }
+  
+  .success-message {
+    color: green;
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+  

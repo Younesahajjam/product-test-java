@@ -1,0 +1,101 @@
+<div class="product-container">
+    <h2 *ngIf="productId; else addProductTitle">Mettre à jour le produit</h2>
+    <ng-template #addProductTitle>
+      <h2>List des produits</h2>
+    </ng-template>
+  
+    <!-- Formulaire d'ajout / modification de produit -->
+    <div *ngIf="isFormVisible">
+      <form (ngSubmit)="saveProduct()" #productForm="ngForm">
+        
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input 
+            type="text" 
+            id="name" 
+            [(ngModel)]="product.name" 
+            name="name" 
+            class="form-control" 
+            required
+            #name="ngModel">
+          
+          <!-- Message d'erreur si le champ est vide -->
+          <div *ngIf="name.invalid && name.touched" class="text-danger">
+            <small>Le nom est requis.</small>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input 
+            type="text" 
+            id="description" 
+            [(ngModel)]="product.description" 
+            name="description" 
+            class="form-control" 
+            required
+            #description="ngModel">
+          
+          <div *ngIf="description.invalid && description.touched" class="text-danger">
+            <small>La description est requise.</small>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="price">Prix</label>
+          <input 
+            type="number" 
+            id="price" 
+            [(ngModel)]="product.price" 
+            name="price" 
+            class="form-control" 
+            required
+            #price="ngModel">
+          
+          <div *ngIf="price.invalid && price.touched" class="text-danger">
+            <small>Le prix est requis.</small>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="quantity">Quantité</label>
+          <input 
+            type="number" 
+            id="quantity" 
+            [(ngModel)]="product.quantity" 
+            name="quantity" 
+            class="form-control" 
+            required
+            #quantity="ngModel">
+          
+          <div *ngIf="quantity.invalid && quantity.touched" class="text-danger">
+            <small>La quantité est requise.</small>
+          </div>
+        </div>
+  <!-- Désactiver le bouton si le formulaire est invalide -->
+        <div class="form-actions">
+          <button 
+            type="submit" 
+            class="btn btn-primary" 
+            [disabled]="productForm.invalid"> 
+            Sauvegarder
+          </button>
+          <button *ngIf="productId" type="button" class="btn btn-danger" (click)="deleteProduct(productId)">Supprimer</button>
+        </div>
+      </form>
+    </div>
+  
+    
+    <div *ngFor="let prod of products">
+      <div class="product-item">
+        <p>{{ prod.name }} - {{ prod.price }} DH | £</p>
+        <button class="btn btn-primary" *ngIf="prod.oid !== undefined" (click)="getProduct(prod.oid)">Modifier</button>
+        <button class="btn btn-danger" *ngIf="prod.oid !== undefined" (click)="deleteProduct(prod.oid)">Supprimer</button>
+      </div>
+    </div>
+  
+    <div class="add-button">
+      <button class="btn btn-success" (click)="toggleFormVisibility()">Ajouter un produit</button>
+    </div>
+  </div>
+  
